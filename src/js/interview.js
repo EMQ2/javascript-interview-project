@@ -5,18 +5,14 @@
        The object should have the format of { label: "a", colour: "#000000" }. Implement this in the function rainbow_colours.
  **/
 function sort_array(arr) {
-    // Implement your code here  
     arr.sort();                
     return arr;
 }
-
 var demoArray = ['dog','zebra','cat','cow','ant','bee'];
 console.log(sort_array(demoArray));
 
 function api_integration(word) {
   var definitionsArr = [];
-  // Implement your code here
-
   var uri = "https://api.dictionaryapi.dev/api/v2/entries/en/" + word;
   return fetch(uri)
     .then(response => {
@@ -26,7 +22,6 @@ function api_integration(word) {
       data.forEach(item => {
         item.meanings.forEach(meaning => {
           meaning.definitions.forEach((definition, index) => {
-            //console.log(definition.definition);
             definitionsArr.push(definition.definition);
           });
         });
@@ -34,7 +29,6 @@ function api_integration(word) {
       return definitionsArr;
     })
     .catch(error => console.log(error));
-
 }
 var str = "durian"
 api_integration(str)
@@ -43,8 +37,17 @@ api_integration(str)
   });
 
 
-function rainbow_colours() {
-    var arr = [];
-    // Implement your code here
-    return arr;
+function rainbow_colours(word) {
+  var arr = ['#000000', '#FFFFFF', '#FF2D00', '#FFF300', '#0000FF', '#00FF04', '#006CFF'];
+  var wordSplit = word.split('');
+  var generateColor = () => 
+  arr[Math.floor(Math.random() * arr.length)];
+
+  var rainbowArr = wordSplit.map(letter => 
+  ({label:letter, color:generateColor() })
+  );
+  return rainbowArr;
 }
+
+var word = "rainbow";
+console.log(rainbow_colours(word));
