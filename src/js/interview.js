@@ -15,10 +15,10 @@ function api_integration() {
 
 function rainbow_colours() {
     const hex_code = () => {
-        return Math.floor(Math.random() * 256).toString(16)
+        return Math.floor(Math.random() * 16777216).toString(16).padStart(6, '0')
     }
     return [...'rainbow'].map(c => {
-        return {label: c, colour: `#${hex_code()}${hex_code()}${hex_code()}`}
+        return {label: c, colour: `#${hex_code()}`}
     });
 }
 
@@ -27,4 +27,4 @@ function test() {
     api_integration().then(r => console.log(r))
     console.log(rainbow_colours())
 }
-// test()
+test()
